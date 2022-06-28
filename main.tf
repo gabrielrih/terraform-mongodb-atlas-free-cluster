@@ -18,8 +18,9 @@ resource "mongodbatlas_project_ip_access_list" "allow-ip" {
 
 # Reference: https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/resources/database_user
 resource "mongodbatlas_database_user" "standard-user" {
-  username           = var.username
-  password           = var.password
+  count              = var.username == null ? 0 : 1
+  username           = "${var.username}"
+  password           = "${var.password}"
   project_id         = var.project_id
   auth_database_name = "admin"
   roles {

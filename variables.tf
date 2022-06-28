@@ -10,17 +10,20 @@ variable "cluster_name" {
 }
 
 variable "ip_address_to_allow" {
-  description = "(Required) Single IP address to be added to the access list."
+  description = "(Optional) Single IP address to be added to the access list."
   type        = string
   default     = null
 }
 
 variable "username" {
-  description = "(Required) Username for authenticating to MongoDB"
+  description = "(Optional) Username for authenticating to MongoDB"
   type        = string
+  default     = null
 }
 
 variable "password" {
-  description = "(Required) User's initial password."
+  description = "(Optional) User's initial password."
   type        = string
+  sensitive   = true
+  default     = null
 }
