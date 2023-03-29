@@ -1,25 +1,24 @@
 # terraform-mongodb-atlas-free-cluster
 Terraform for create a Free Atlas Cluster.
 
-## How to set it up
+## Develop
+### How to set it up 
+```sh
+export MONGODB_ATLAS_PUBLIC_KEY=""
+export MONGODB_ATLAS_PRIVATE_KEY=""
+```
 
-``export MONGODB_ATLAS_PUBLIC_KEY=""``
+### How to run it
+```sh
+terraform -chdir="./example" init
+terraform -chdir="./example" plan
+terraform -chdir="./example" apply
+```
 
-``export MONGODB_ATLAS_PRIVATE_KEY=""``
+### How to destroy it
+```sh
+terraform -chdir="./example" destroy
+```
 
-
-## How to run it
-
-``terraform -chdir="./example" init``
-
-``terraform -chdir="./example" plan``
-
-``terraform -chdir="./example" apply``
-
-## How to destroy it
-
-``terraform -chdir="./example" destroy``
-
-## Extra commands
-
-``terraform -chdir="./example" output``
+## Production
+There is a action workflow that runs in each PR to runs a terraform plan but it also runs when you merge the PR to the main. When you do it, the workflow also runs the terraform apply.
