@@ -4,7 +4,7 @@ resource "mongodbatlas_cluster" "free-cluster" {
   name                        = var.cluster_name
   provider_name               = "TENANT"
   backing_provider_name       = "AWS"
-  provider_region_name        = "BRAZIL_SOUTH"#"US_EAST_1"
+  provider_region_name        = "SA_EAST_1"#"US_EAST_1"
   provider_instance_size_name = "M0" // Free tier
 }
 
