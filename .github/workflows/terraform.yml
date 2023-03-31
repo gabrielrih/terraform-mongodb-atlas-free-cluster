@@ -31,15 +31,15 @@ jobs:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       
       # Create credential file (Terraform Cloud authentication)
-      - name: Create credential file for Terraform Cloud
-        run: |
-          cat >~/.terraformrc <<EOL
-          credentials "app.terraform.io" {
-            token = "${TKE_TOKEN}"
-          }
-          EOL
-        env:
-          TKE_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
+      # - name: Create credential file for Terraform Cloud
+      #   run: |
+      #     cat >~/.terraformrc <<EOL
+      #     credentials "app.terraform.io" {
+      #       token = "${TKE_TOKEN}"
+      #     }
+      #     EOL
+      #   env:
+      #     TKE_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
 
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
@@ -52,9 +52,10 @@ jobs:
       # Generates an execution plan for Terraform
       - name: Terraform Plan
         run: terraform plan -var-file="example.tfvars"
-
-      - name: Debug
-        run: echo "${{ github.event_name }} ${{ github.ref }}"
+        env:
+          MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
+          MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
+          TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
 
         # On push to "main", build or change infrastructure according to Terraform configuration files
         # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
@@ -64,3 +65,4 @@ jobs:
         env:
           MONGODB_ATLAS_PUBLIC_KEY: ${{ secrets.MONGODB_ATLAS_PUBLIC_KEY }}
           MONGODB_ATLAS_PRIVATE_KEY: ${{ secrets.MONGODB_ATLAS_PRIVATE_KEY }}
+          TF_TOKEN_app_terraform_io: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
