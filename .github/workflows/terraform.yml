@@ -30,17 +30,6 @@ jobs:
         with:
           cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
       
-      # Create credential file (Terraform Cloud authentication)
-      # - name: Create credential file for Terraform Cloud
-      #   run: |
-      #     cat >~/.terraformrc <<EOL
-      #     credentials "app.terraform.io" {
-      #       token = "${TKE_TOKEN}"
-      #     }
-      #     EOL
-      #   env:
-      #     TKE_TOKEN: ${{ secrets.TERRAFORM_CLOUD_TOKEN }}
-
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
         run: terraform fmt
