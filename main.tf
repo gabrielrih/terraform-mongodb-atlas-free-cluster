@@ -2,7 +2,6 @@
 resource "mongodbatlas_cluster" "free-cluster" {
   project_id                  = var.project_id
   name                        = var.cluster_name
-  paused                      = var.paused
   provider_name               = "TENANT"
   backing_provider_name       = "AWS"
   provider_region_name        = "SA_EAST_1"

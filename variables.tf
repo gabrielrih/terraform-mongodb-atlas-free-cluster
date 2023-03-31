@@ -9,12 +9,6 @@ variable "cluster_name" {
   type        = string
 }
 
-variable "paused" {
-  description = "(Optional) Flag that indicates whether the cluster is paused or not"
-  type        = bool
-  default     = false
-}
-
 variable "ip_address_to_allow" {
   description = "(Optional) Single IP address to be added to the access list."
   type        = string
